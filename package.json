@@ -2,7 +2,7 @@
   "name": "lotus_interface",
   "version": "1.0.0",
   "description": "An interface between Filecoin's Lotus Client and JS.",
-  "main": "interface.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
