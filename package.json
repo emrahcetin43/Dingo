@@ -1,0 +1,15 @@
+{
+  "name": "lotus_interface",
+  "version": "1.0.0",
+  "description": "An interface between Filecoin's Lotus Client and JS.",
+  "main": "interface.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marston Connell",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "dotenv": "^10.0.0"
+  }
+}
