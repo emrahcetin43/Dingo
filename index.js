@@ -1,16 +1,25 @@
 require("dotenv").config();
-const axios = require('axios');
 
-const Wallet = require('./src/wallet');
-const Client = require('./src/client');
+const createWallet = require('./src/wallet');
+const createClient = require('./src/client');
+const utils = require('./src/utils');
+const network = require('./src/network');
 
-const {postJSON} = require('./src/network');
+
+let FileCoin = {
+    endpoint: 'http://127.0.0.1:1234/rpc/v0',
+    postJSON: function (method, params = null) {
+        return new Promise((resolve, reject) => {
+            network.postJSON(method, this.endpoint, params).then(resolve).catch(reject);
+        });
+    },
+};
 
 
-let FileCoin = {endpoint: 'http://127.0.0.1:1234/rpc/v0'};
+FileCoin.client = createClient(FileCoin);
+FileCoin.wallet = createWallet(FileCoin);
 
-FileCoin.client = Client;
-FileCoin.wallet = Wallet;
+FileCoin.utils = utils;
 
 FileCoin.version = () => {
     return new Promise((resolve, reject) => {
@@ -18,7 +27,7 @@ FileCoin.version = () => {
     });
 };
 
-FileCoin.setRPC = (rpc) => {
+FileCoin.setRPC = function (rpc) {
     this.endpoint = rpc;
 }
 
