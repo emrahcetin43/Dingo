@@ -5,7 +5,7 @@ const axios = require('axios');
 
 function postJSON(method, rpc, params = null) {
     return new Promise((resolve, reject) => {
-        axios({
+        let push = {
             headers: {"Authorization" : `Bearer ${tokenStr}`},
             method: 'post',
             url: rpc,
@@ -15,7 +15,11 @@ function postJSON(method, rpc, params = null) {
                 id: 1,
                 params: params
             }
-        }).then((r) => {
+        };
+
+        // console.log(JSON.stringify(push, null, 4));
+
+        axios(push).then((r) => {
             resolve(r.data);
         }).catch((err) => {
             reject(err);

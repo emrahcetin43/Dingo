@@ -81,11 +81,16 @@ function createClient(fc) {
                             Root: {
                                 "/": CID
                             },
+                            PieceCid: null ,//{
+                            //     "/": pieceCID
+                            // },
+                            PieceSize: size,
+                            RawBlockSize: 0,
                             
                         },
                         Wallet: wallet,
                         Miner: miner,
-                        EpochPrice: "300",
+                        EpochPrice: "500",
                         MinBlocksDuration: duration,
                         ProviderCollateral: "0",
                         DealStartEpoch: -1,
