@@ -1,12 +1,12 @@
 {
   "name": "dingo",
   "version": "1.0.0",
-  "description": "An interface between Filecoin's Lotus Client and JS.",
+  "description": "A simple but feature filled interface between Filecoin's Lotus client and JS.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no tests included\" && exit 1"
   },
-  "author": "Marston Connell",
+  "author": "Marston Connell <marston.ian.connell@gmail.com> (https://marstonconnell.xyz)",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
