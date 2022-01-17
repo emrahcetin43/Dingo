@@ -72,7 +72,7 @@ function createClient(fc) {
                             PieceSize: fc.utils.calculatePaddedSize(size),
          */
 
-        startDeal: function (CID, wallet, miner, pieceCID, size, duration=518400) {
+        startDeal: function (CID, wallet, miner, pieceCID, size, price=1000, duration=518400) {
             return new Promise((resolve, reject) => {
                 fc.postJSON(method="Filecoin.ClientStartDeal", params=[
                     {
@@ -90,7 +90,7 @@ function createClient(fc) {
                         },
                         Wallet: wallet,
                         Miner: miner,
-                        EpochPrice: "500",
+                        EpochPrice: price,
                         MinBlocksDuration: duration,
                         ProviderCollateral: "0",
                         DealStartEpoch: -1,
