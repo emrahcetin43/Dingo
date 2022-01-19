@@ -64,13 +64,25 @@ function createClient(fc) {
             });
         },
 
-        /**
-         * 
-         * PieceCid: {
-                                "/": pieceCID,
-                            },
-                            PieceSize: fc.utils.calculatePaddedSize(size),
-         */
+        getDealStatus : function (id) {
+            return new Promise((resolve, reject) => {
+                fc.postJSON(method="Filecoin.ClientGetDealStatus", params=[
+                    id
+                ]).then(resolve).catch(reject);
+            });
+        },
+
+        getDealUpdates : function () {
+            return new Promise((resolve, reject) => {
+                fc.postJSON(method="Filecoin.ClientGetDealUpdates", params=[]).then(resolve).catch(reject);
+            });
+        },
+
+        listDeals : function () {
+            return new Promise((resolve, reject) => {
+                fc.postJSON(method="Filecoin.ClientListDeals", params=[]).then(resolve).catch(reject);
+            });
+        },
 
         startDeal: function (CID, wallet, miner, pieceCID, size, price=1000, duration=518400) {
             return new Promise((resolve, reject) => {
@@ -90,7 +102,7 @@ function createClient(fc) {
                         },
                         Wallet: wallet,
                         Miner: miner,
-                        EpochPrice: price,
+                        EpochPrice: String(price),
                         MinBlocksDuration: duration,
                         ProviderCollateral: "0",
                         DealStartEpoch: -1,

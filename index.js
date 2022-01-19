@@ -8,9 +8,29 @@ const network = require('./src/network');
 
 let FileCoin = {
     endpoint: 'http://127.0.0.1:1234/rpc/v0',
+    setRPC: function (rpc) {
+        this.endpoint = rpc;
+    },
     postJSON: function (method, params = null) {
         return new Promise((resolve, reject) => {
             network.postJSON(method, this.endpoint, params).then(resolve).catch(reject);
+        });
+    },
+    version: function () {
+        return new Promise((resolve, reject) => {
+            this.postJSON(method="Filecoin.Version").then(resolve).catch(reject);
+        });
+    },
+    
+    shutdown: function () {
+        return new Promise((resolve, reject) => {
+            this.postJSON(method="Filecoin.Shutdown").then(resolve).catch(reject);
+        });
+    },
+    
+    discover: function () {
+        return new Promise((resolve, reject) => {
+            this.postJSON(method="Filecoin.Discover").then(resolve).catch(reject);
         });
     },
 };
@@ -21,15 +41,7 @@ FileCoin.wallet = createWallet(FileCoin);
 
 FileCoin.utils = utils;
 
-FileCoin.version = () => {
-    return new Promise((resolve, reject) => {
-        postJSON(method="Filecoin.Version").then(resolve).catch(reject);
-    });
-};
 
-FileCoin.setRPC = function (rpc) {
-    this.endpoint = rpc;
-}
 
 
 
